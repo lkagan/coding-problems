@@ -1,6 +1,10 @@
 <?php
 function findTwoSum($nums, $target) 
 {
+    if (count($nums) < 2) {
+        return null;
+    }
+
     for ($i = 0; $i < count($nums) - 1; ++$i) {
         for ($j = $i + 1; $j < count($nums); ++$j) {
             if ($nums[$i] + $nums[$j] === $target) {
@@ -8,6 +12,8 @@ function findTwoSum($nums, $target)
             }
         }
     }
+
+    return null;
 }
 
 print(json_encode(findTwoSum([ 2, 7, 11, 15 ], 9)) . PHP_EOL); // [0, 1]
