@@ -9,5 +9,5 @@ def greatest_volume_pair(nums):
 
     return largest_area
 
-print(greatest_volume_pair([ 7, 1, 3, 9 ]))
 
+print(greatest_volume_pair([7, 1, 3, 9]))
