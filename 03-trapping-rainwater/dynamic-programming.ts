@@ -1,13 +1,13 @@
 const trappedWater = (heights: number[]): number => {
     let pLeft = 0;
-    let pRight = heights.length;
+    let pRight: number = heights.length;
     let totalWater = 0;
-    let maxLeft = heights[ pLeft ];
-    let maxRight = heights[ pRight ];
+    let maxLeft: number = heights[ pLeft ];
+    let maxRight: number = heights[ pRight ];
 
     while (pLeft !== pRight) {
         if (heights[ pLeft ] <= heights[ pRight ]) {
-            let currentHeight = heights[ pLeft ];
+            let currentHeight: number = heights[ pLeft ];
 
             if (currentHeight < maxLeft) {
                 totalWater += maxLeft - currentHeight;
@@ -25,11 +25,11 @@ const trappedWater = (heights: number[]): number => {
                 maxRight = currentHeight;
             }
 
-            pLeft--
+            pRight--;
         }
-
-        return totalWater;
     }
+
+    return totalWater;
 }
 
 
