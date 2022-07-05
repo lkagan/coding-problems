@@ -1,6 +1,6 @@
 const trappedWater = (heights: number[]): number => {
     let pLeft = 0;
-    let pRight: number = heights.length;
+    let pRight: number = heights.length - 1;
     let totalWater = 0;
     let maxLeft: number = heights[ pLeft ];
     let maxRight: number = heights[ pRight ];
