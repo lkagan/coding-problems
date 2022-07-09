@@ -24,9 +24,9 @@ def trapped_water(heights: list[int]) -> int:
             else:
                 max_right = current_height
 
-                p_right -= 1
+            p_right -= 1
 
-        return total_water
+    return total_water
 
 
 heights = [0, 1, 0, 2, 1, 0, 3, 1, 0, 1, 2]
