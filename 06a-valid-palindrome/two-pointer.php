@@ -16,6 +16,3 @@ function isPalindrome($s)
 
     return true;
 }
-
-isPalindrome("race a car");
-
