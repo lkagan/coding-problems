@@ -11,13 +11,11 @@ function reverseBetween(head, left, right) {
     let next = null;
 
     while (pointer <= left) {
-        // Get the tail of the first list segment.
         if (pointer === left - 1) {
+            // Get the tail of the first list segment.
             seg1Tail = current;
-        }
-
-        // Remember the left node
-        if (pointer === left) {
+        } else if (pointer === left) {
+            // Remember the left node
             leftNode = current;
         }
 
@@ -46,7 +44,9 @@ function reverseBetween(head, left, right) {
     // Connect the leftNode to the node (or null) in position 'right' + 1
     leftNode.next = current;
 
-    return seg1Tail ? head : previous;
+    // If the head of the list is the first node of the reversal, return the
+    // last node of the reversal.  Otherwise, return the original head.
+    return left === 1 ? previous : head;
 }
 
 console.log(reverseBetween({ val: 3, next: { val: 5, next: null } }, 1, 2));
