@@ -1,12 +1,12 @@
-function detectCycle(head) {
+function detectCycle(head: NullableNode): NullableNode {
     let turtle = head;
     let rabbit = head;
-    let intersect = null;
+    let intersect: NullableNode = null;
 
     while (rabbit?.next && !intersect) {
         turtle = turtle.next;
         rabbit = rabbit.next.next;
-        
+
         if (turtle === rabbit) {
             intersect = turtle;
         }
@@ -23,3 +23,10 @@ function detectCycle(head) {
 
     return head;
 }
+
+type ListNode = {
+    val: number,
+    next: NullableNode,
+}
+
+type NullableNode = ListNode | null;
