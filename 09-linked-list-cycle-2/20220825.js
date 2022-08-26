@@ -6,7 +6,7 @@ function detectCycle(head) {
     while (rabbit?.next && !intersect) {
         turtle = turtle.next;
         rabbit = rabbit.next.next;
-        
+
         if (turtle === rabbit) {
             intersect = turtle;
         }
