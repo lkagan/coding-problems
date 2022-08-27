@@ -5,6 +5,7 @@ function isValid(s: string): boolean {
         '}': '{'
     };
 
+    // @ts-ignore
     const left = new Set(Object.values(pairs));
     const unmatched: string[] = [];
 
