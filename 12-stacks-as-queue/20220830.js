@@ -3,13 +3,13 @@ class MyQueue {
     #right = [];
 
     #exposeFront() {
-        while (this.#right.length !== 0) {
+        while (this.#right.length > 0) {
             this.#left.push(this.#right.pop());
         }
     }
 
     #exposeBack() {
-        while (this.#left.length !== 0) {
+        while (this.#left.length > 0) {
             this.#right.push(this.#left.pop());
         }
     }
