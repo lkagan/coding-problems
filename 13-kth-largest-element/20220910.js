@@ -1,11 +1,11 @@
 function findKthLargest(nums, k) {
-    quickerSort(nums, 0, nums.length - 1, k);
-    return nums[nums.length - k];
+    const indexToFind = nums.length - k;
+    return quickSelect(nums, 0, nums.length - 1, indexToFind);
 }
 
-function quickerSort(nums, start, end, k) {
-    if (nums?.length < 2) {
-        return;
+function quickSelect(nums, start, end, indexToFind) {
+    if (start === end) {
+        return nums[start];
     }
 
     let left = start;
@@ -22,14 +22,20 @@ function quickerSort(nums, start, end, k) {
 
     [nums[left], nums[end]] = [nums[end], nums[left]];
 
-    left - 1 > start && quickerSort(nums, start, left - 1);
-    left + 1 < end && quickerSort(nums, left + 1, end);
+    if (left === indexToFind) {
+        return nums[indexToFind];
+    } else if (left > indexToFind) {
+        return quickSelect(nums, start, left - 1, indexToFind);
+    } else {
+        return quickSelect(nums, left + 1, end, indexToFind);
+    }
 }
 
 
-let nums;
+let nums, k;
 nums = [3, 2, 1, 5, 6, 4];
-const k = 2 // 5
+k = 2 // 5
 
+nums = [3,2,3,1,2,4,5,5,6]
+k = 4;
 console.log(findKthLargest(nums, k));
-// console.log(nums);
