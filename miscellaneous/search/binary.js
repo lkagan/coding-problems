@@ -1,22 +1,23 @@
-function binarySearch(nums, start, end, term) {
-    if (term < nums[start] || term > nums[end]) {
-        return null;
+function binarySearch(nums, term) {
+    let left = 0;
+    let right = nums.length - 1;
+
+    while (left <= right) {
+        const mid = Math.floor((left + right) / 2);
+
+        if (term === nums[mid]) {
+            return mid;
+        } else if (term < nums[mid]) {
+            right = mid - 1;
+        } else {
+            left = mid + 1;
+        }
     }
 
-    const mid = Math.floor((start + end) / 2);
-
-    if (term === nums[mid]) {
-        return mid;
-    } else if (term < nums[mid]) {
-        return binarySearch(nums, start, mid - 1, term);
-    } else {
-        return binarySearch(nums, mid + 1, end, term);
-    }
+    return null;
 }
 
-let nums;
-let term;
-nums = [1,2,3,4,5];
-term = 4;
+let nums = [1,2,3,4,5,7];
+let term = 1;
 
-console.log(binarySearch(nums, 0, nums.length - 1, term));
+console.log(binarySearch(nums, term));
