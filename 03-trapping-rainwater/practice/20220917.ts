@@ -1,4 +1,4 @@
-funciton trap (heights: number[]): number {
+function trap (heights: number[]): number {
     let maxLeft = 0;
     let maxRight = 0;
     let left = 0;
