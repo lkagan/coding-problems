@@ -1,11 +1,7 @@
-function maxDepth(root) {
-    return getDepth(root, 0);
-}
-
-function getDepth(node, count) {
+function maxDepth(node) {
     if (!node) {
-        return count;
+        return 0;
     }
 
-    return Math.max(getDepth(node.left, count), getDepth(node.right, count)) + 1;
+    return Math.max(maxDepth(node.left), maxDepth(node.right)) + 1;
 }
