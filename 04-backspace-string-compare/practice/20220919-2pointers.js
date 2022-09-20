@@ -42,3 +42,5 @@ function backspaceCompare(s, t) {
 
     return true;
 }
+
+module.exports = backspaceCompare;
