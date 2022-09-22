@@ -1,13 +1,13 @@
 function breadthFirstSearch(tree) {
-    const cache = [];
+    const queue = [];
     const results = [];
-    cache.push(tree);
+    queue.push(tree);
 
-    while (cache.length) {
-        const node = cache.shift();
+    while (queue.length) {
+        const node = queue.shift();
         results.push(node.value);
-        node.left && cache.push(node.left);
-        node.right && cache.push(node.right);
+        node.left && queue.push(node.left);
+        node.right && queue.push(node.right);
     }
 
     return results;
