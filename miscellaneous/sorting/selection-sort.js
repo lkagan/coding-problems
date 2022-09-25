@@ -9,9 +9,7 @@ function selectionSort(nums) {
         }
 
         if (lowestIdx !== i) {
-            let lowest = nums [lowestIdx];
-            nums[lowestIdx] = nums[i];
-            nums[i] = lowest;
+            [nums[lowestIdx], nums[i]] = [nums[i], nums[lowestIdx]];
         }
     }
 
@@ -23,9 +21,7 @@ function selectionSortSimplified(nums) {
     for (let i = 0; i < nums.length - 1; ++i) {
         for (let j = i + 1; j < nums.length; ++j) {
             if (nums[j] < nums[i]) {
-                let temp = nums [i];
-                nums[i] = nums[j];
-                nums[j] = temp;
+                [nums[i], nums[j]] = [nums[j], nums[i]];
             }
         }
     }
