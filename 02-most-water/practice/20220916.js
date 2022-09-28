@@ -7,8 +7,9 @@ function maxArea(height) {
         let area = Math.min(height[left], height[right]) * (right - left);
         max = Math.max(area, max);
         height[left] < height[right] ? left++ : right--;
-
     }
 
     return max;
 }
+
+module.exports = maxArea;
