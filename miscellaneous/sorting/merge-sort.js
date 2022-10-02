@@ -22,7 +22,10 @@ function merge(left, right) {
         }
     }
 
-    return merged.concat(left.slice(leftIdx)).concat(right.slice(rightIdx));
+    // Append any remaining values from left or right to merged.
+    return merged
+        .concat(left.slice(leftIdx))
+        .concat(right.slice(rightIdx));
 }
 
 // const numbers = [3,8,1,3,3,5,7,1,2,6,2,7,0,1];
