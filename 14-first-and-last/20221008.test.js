@@ -15,12 +15,27 @@ const fixtures = [
         nums: [],
         target: 0,
         output: [-1,-1]
-    }
+    },
+    {
+        nums: [1],
+        target: 0,
+        output: [-1,-1]
+    },
+    {
+        nums: [1],
+        target: 1,
+        output: [0,0]
+    },
+
 ];
 
 describe('Gets range', () => {
     fixtures.forEach(fixture => {
-        it ('Gets ' + JSON.stringify(fixture.output + ' for ' + JSON.stringify(fixture.nums)), () => {
+        const desc = `Finds ${fixture.target} at `
+            + JSON.stringify(fixture.output) + ' for '
+            + JSON.stringify(fixture.nums);
+
+        it (desc, () => {
             expect(searchRange(fixture.nums, fixture.target)).toEqual(fixture.output);
         })
     })
