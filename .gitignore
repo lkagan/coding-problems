@@ -1,3 +1,5 @@
 .idea
 node_modules
 coverage
+.phpunit.result.cache
+vendor
