@@ -9,8 +9,10 @@ const inputs = [
 
 describe('Bubble sort', () => {
     inputs.forEach(nums => {
+        const sorted = [...nums];
+
         it('Sorts ' + JSON.stringify(nums), () => {
-            expect(bubbleSort(nums)).toEqual(nums.sort((a, b) => a - b));
+            expect(bubbleSort(nums)).toEqual(sorted.sort((a, b) => a - b));
         })
     })
 });
