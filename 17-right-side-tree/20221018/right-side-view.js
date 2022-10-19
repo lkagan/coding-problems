@@ -1,4 +1,4 @@
-'strict mode';
+'use strict';
 
 module.exports = (root) => {
     const queue = [root];
