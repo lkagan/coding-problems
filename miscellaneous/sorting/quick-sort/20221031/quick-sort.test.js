@@ -13,6 +13,7 @@ const testCases = [
 
 testCases.forEach(nums => {
     it(`quickSort([${nums}])`, () => {
-        expect(quickSort([...nums])).toEqual([...nums].sort((a,b) => a - b));
+        const end = nums.length - 1;
+        expect(quickSort([...nums], 0, end)).toEqual([...nums].sort((a,b) => a - b));
     })
 });
