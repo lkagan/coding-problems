@@ -12,5 +12,5 @@ const testCases = [
 testCases.forEach(nums => {
     it(`insertionSort([${nums}])`, () => {
         expect(insertionSort([...nums])).toEqual([...nums].sort((a,b) => a - b));
-    })
-})
+    });
+});
