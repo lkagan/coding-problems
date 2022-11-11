@@ -5,16 +5,15 @@ function countNodes(root) {
         return 0;
     }
 
-    if (!root.next) {
+    if (!root.left) {
         return 1;
     }
 
     const height = getHeight(root);
-    const topNodesCount = 2 ** (height - 1) - 1;
+    const topNodesCount = 2 ** height - 1;
 
-    // Find the index of the last node
     let left = 0;
-    let right = topNodesCount + 1;
+    let right = topNodesCount;
 
     while (left < right) {
         let mid = Math.ceil((right + left) / 2);
@@ -25,9 +24,9 @@ function countNodes(root) {
 }
 
 function getHeight(root) {
-    let count = 1;
+    let count = 0;
 
-    while (root.left !== null) {
+    while (root.left) {
         ++count;
         root = root.left;
     }
@@ -37,12 +36,12 @@ function getHeight(root) {
 
 function nodeExists(idxToFind, height, node) {
     let left = 0;
-    let right = 2 ** (height - 1) - 1;
+    let right = 2 ** height - 1;
     let count = 0;
 
     while (count < height) {
         let mid = Math.ceil((left + right) / 2);
-        
+
         if (idxToFind >= mid) {
             node = node.right;
             left = mid;
