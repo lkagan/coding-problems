@@ -2,7 +2,7 @@
 
 module.exports = matrix => {
     const seen = new Array(matrix.length).fill(0)
-        .map(row => new Array(matrix[0].length).fill(false));
+        .map(() => new Array(matrix[0].length).fill(false));
     const results = [];
 
     dfs(matrix, seen, results, 0, 0);
