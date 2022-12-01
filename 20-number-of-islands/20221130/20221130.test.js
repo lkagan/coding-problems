@@ -1,3 +1,5 @@
+'use strict';
+
 const { numIslands } = require('./20221130');
 
 const testCases = [
