@@ -5,23 +5,23 @@ export function wallsAndGates(rooms: number[][]): number[][] {
     for (let i = 0; i < rooms.length; ++i) {
         for (let j = 0; j < rooms[0].length; ++j) {
             if (rooms[i][j] === GATE) {
-                bfs(rooms, i, j, 0);
+                dfs(rooms, i, j, 0);
             }
         }
     }
+
     return rooms;
 }
 
-function bfs(grid: number[][], row: number, col: number, step: number) {
-    // If  not in bounds or current step > one in the
-    if (!inBounds(grid, row, col) || step > grid[row][col]) {
+function dfs(grid: number[][], row: number, col: number, step: number) {
+    if (!inBounds(grid, row, col) || step && step >= grid[row][col]) {
         return;
     }
 
     grid[row][col] = step;
 
     DIRECTIONS.forEach(DIR => {
-        bfs(grid, row + DIR[0], col + DIR[1], step + 1);
+        dfs(grid, row + DIR[0], col + DIR[1], step + 1);
     });
 }
 
