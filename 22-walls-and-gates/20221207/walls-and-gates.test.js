@@ -25,7 +25,7 @@ const testCases = [
 ];
 
 testCases.forEach((testCase, index) => {
-    it(`wallsAndGates(testCases[${index}])`, () => {
+    it(`wallsAndGates(testCases[${ index }])`, () => {
         expect(wallsAndGates(testCase.before)).toEqual(testCase.after);
     });
 });
