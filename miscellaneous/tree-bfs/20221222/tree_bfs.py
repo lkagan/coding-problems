@@ -1,11 +1,5 @@
+from __future__ import annotations
 from typing import List
-
-
-class TreeNode:
-    def __init__(self, value: int, left=None, right=None):
-        self.value = value
-        self.left = left
-        self.right = right
 
 
 def bfs(tree: TreeNode) -> List[int]:
@@ -21,5 +15,12 @@ def bfs(tree: TreeNode) -> List[int]:
     return values
 
 
+class TreeNode:
+    value: int
+    left: TreeNode
+    right: TreeNode
 
-
+    def __init__(self, value: int, left:TreeNode=None, right:TreeNode=None):
+        self.value = value
+        self.left = left
+        self.right = right
