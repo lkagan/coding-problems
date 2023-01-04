@@ -21,6 +21,7 @@ const testCases = [
         3
     ),
     new TestCase(6, 2, [2,2,-1,2,2,2], [0,0,1,0,0,0], 1),
+    new TestCase(4, 0, [-1,0,0,1], [4,3,0,0], 7),
 ]
 
 testCases.forEach(({n, id, managers, informTime, solution}, index) => {
