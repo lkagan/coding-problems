@@ -3,7 +3,7 @@
 module.exports = (graph) => {
     const values = [];
     const queue = [0];
-    const seen = new Set();
+    const seen = new Set(queue);
 
     while (queue.length) {
         const vertex = queue.shift();
@@ -12,7 +12,7 @@ module.exports = (graph) => {
 
         for (const connection of connections) {
             if (!seen.has(connection)) {
-                seen.add(vertex);
+                seen.add(connection);
                 queue.push(connection);
             }
         }
