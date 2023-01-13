@@ -5,7 +5,6 @@ DIRECTIONS = (-1, 0), (0, 1), (1, 0), (0, -1)
 
 def matrix_dft(matrix: List[List[int]]) -> List[int]:
     seen = [[False for x in range(len(matrix[0]))] for y in range(len(matrix))]
-    seen[0][0] = True
     values: List[int] = []
     return dft(0, 0, matrix, values, seen)
 
@@ -18,13 +17,13 @@ def dft(
         seen: List[List[int]]
 ):
     values.append(matrix[row][col])
+    seen[row][col] = True
 
     for move in DIRECTIONS:
         new_row = row + move[0]
         new_col = col + move[1]
 
         if in_bounds(new_row, new_col, matrix) and not seen[new_row][new_col]:
-            seen[new_row][new_col] = True
             dft(new_row, new_col, matrix, values, seen)
 
     return values
