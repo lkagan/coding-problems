@@ -2,6 +2,7 @@
 
 exports.graphDfs = (graph) => {
     const values = new Set();
+    const seen = new Set([0]);
     const stack = [0];
 
     while (stack.length) {
@@ -9,7 +10,8 @@ exports.graphDfs = (graph) => {
         values.add(vertex);
 
         for (const connection of graph[vertex]) {
-           if (!values.has(connection)) {
+           if (!seen.has(connection)) {
+               seen.add(connection);
                stack.push(connection);
            }
         }
