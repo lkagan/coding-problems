@@ -2,15 +2,19 @@
 
 function graphDfs(graph) {
     const values = new Set()
-    dfs(0, graph, values);
+    const seen = new Set([0]);
+    dfs(0, graph, values, seen);
     return values;
 }
 
-function dfs(current, graph, values) {
+function dfs(current, graph, values, seen) {
     values.add(current);
 
     for (const neighbor of graph[current]) {
-        !values.has(neighbor) && dfs(neighbor, graph, values);
+        if (!seen.has(neighbor)) {
+            seen.add(neighbor);
+            dfs(neighbor, graph, values, seen);
+        }
     }
 }
 
