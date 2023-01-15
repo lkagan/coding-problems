@@ -1,4 +1,4 @@
-import matrixDfs from "./matrix-dfs-ts";
+import matrixDfs from "./matrix-dfs-stack-ts";
 
 const testMatrix = [
     [1, 2, 3, 4, 5],
