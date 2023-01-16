@@ -1,27 +1,33 @@
 'use strict';
 
-/**
- *
- * @param n
- * @param id
- * @param managers number[]
- * @param informTime number[]
- * @returns {*}
- */
 function numOfMinutes(n, id, managers, informTime) {
-    let maxChildTime = 0;
-    let empId = managers.indexOf(id);
+    const adjList = getAdjList(managers);
+    return getTime(id, adjList, informTime);
+}
 
-    while (empId !== -1) {
-        maxChildTime = Math.max(
-            maxChildTime,
-            numOfMinutes(n, empId, managers, informTime)
-        );
+function getTime(empId, adjList, informTime) {
+    let maxTime = 0;
+    const myTime = informTime[empId];
 
-        empId = managers.indexOf(id, empId + 1);
+    for (let report of adjList[empId]) {
+        maxTime = Math.max(maxTime, getTime(report, adjList, informTime));
     }
 
-    return maxChildTime + informTime[id];
+    return maxTime + myTime;
+}
+
+function getAdjList(managers) {
+    const adjList = [];
+
+    for (let i = 0; i < managers.length; ++i) {
+        adjList[i] = [];
+    }
+
+    managers.forEach((mgrId, empId) => {
+        mgrId !== -1 && adjList[mgrId].push(empId);
+    })
+
+    return adjList;
 }
 
 module.exports = numOfMinutes;
