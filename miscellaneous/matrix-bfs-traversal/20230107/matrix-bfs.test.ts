@@ -1,3 +1,4 @@
+import { test, expect} from "vitest";
 import matrixBfs from './matrix-bfs-ts';
 
 const matrix = [
