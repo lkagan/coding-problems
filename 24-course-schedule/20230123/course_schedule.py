@@ -26,6 +26,7 @@ class Solution:
                 for connection in adj_list[prereq_id]:
                     if connection not in seen:
                         queue.append(connection)
+                        seen.add(connection)
 
         return True
 
