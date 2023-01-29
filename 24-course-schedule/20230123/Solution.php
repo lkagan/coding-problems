@@ -6,6 +6,7 @@ class Solution
 {
     protected int $numCourses;
     protected array $preReqs;
+    protected array $seen;
 
     public function canFinish(int $numCourses, array $preReqs): bool
     {
@@ -14,26 +15,18 @@ class Solution
         $adjList = $this->getAdjList();
 
         foreach ($adjList as $courseId => $coursePreReqs) {
+            $this->seen = [];
             $stack = $coursePreReqs;
-            $seen = [];
+            if (!$coursePreReqs) continue;
 
             while ($stack) {
-                $current = array_pop($stack);
-                if ($current === $courseId) return false;
-
-                if (!$this->hasSeen(key: $current, seen: $seen)) {
-                    $this->setSeen($current, $seen);
-
-                    if (! $adjList[$current]) {
-                        continue;
-                    }
-
-                    $stack += array_filter(
-                        array: $adjList[$current],
-                        callback: fn($connection) => !$this->hasSeen($connection, $seen)
-                    );
-                }
+                $preReq = array_pop($stack);
+                if ($preReq === $courseId) return false;
+                if ($this->hasSeen($preReq)) continue;
+                $this->setSeen($preReq);
+                array_push($stack, ...$adjList[$preReq]);
             }
+
         }
 
         return true;
@@ -50,14 +43,14 @@ class Solution
         return $adjList;
     }
 
-    protected function hasSeen (mixed $key, array $seen): bool
+    protected function hasSeen(mixed $key): bool
     {
-        return array_key_exists(key: serialize($key), array: $seen);
+        return array_key_exists(key: serialize($key), array: $this->seen);
     }
 
-    protected function setSeen (mixed $key, array $seen): array
+    protected function setSeen(mixed $key): array
     {
-        $seen[serialize($key)] = true;
-        return $seen;
+        $this->seen[serialize($key)] = true;
+        return $this->seen;
     }
 }
