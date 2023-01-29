@@ -13,23 +13,25 @@ class Solution
         $this->preReqs = $preReqs;
         $adjList = $this->getAdjList();
 
-       for ($courseId = 0; $courseId < count($adjList); ++$courseId) {
-            if (count($adjList[$courseId]) === 0) {
-                continue;
-            }
-
+        foreach ($adjList as $courseId => $coursePreReqs) {
+            $stack = $coursePreReqs;
             $seen = [];
-            $stack = $adjList[$courseId];
 
             while ($stack) {
-                $preReq = array_pop($stack);
+                $current = array_pop($stack);
+                if ($current === $courseId) return false;
 
-                if ($courseId === $preReq) return false;
+                if (!$this->hasSeen(key: $current, seen: $seen)) {
+                    $this->setSeen($current, $seen);
 
-                foreach ($adjList[$courseId] as $connection)
-                    if (! array_key_exists(key: serialize($connection), array: $seen)) {
-                        $seen[serialize($connection)] = true;
-                        $stack[] = $connection;
+                    if (! $adjList[$current]) {
+                        continue;
+                    }
+
+                    $stack += array_filter(
+                        array: $adjList[$current],
+                        callback: fn($connection) => !$this->hasSeen($connection, $seen)
+                    );
                 }
             }
         }
@@ -46,5 +48,16 @@ class Solution
         }
 
         return $adjList;
+    }
+
+    protected function hasSeen (mixed $key, array $seen): bool
+    {
+        return array_key_exists(key: serialize($key), array: $seen);
+    }
+
+    protected function setSeen (mixed $key, array $seen): array
+    {
+        $seen[serialize($key)] = true;
+        return $seen;
     }
 }
