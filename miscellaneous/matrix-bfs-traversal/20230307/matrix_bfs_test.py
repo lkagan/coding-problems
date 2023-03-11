@@ -9,5 +9,6 @@ matrix = (
 
 results = 1, 2, 5, 3, 6, 9, 4, 7, 10, 13, 8, 11, 14, 12, 15, 16
 
+
 def test_bfs():
     assert bfs(matrix) == results

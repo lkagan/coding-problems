@@ -3,7 +3,7 @@ from typing import Tuple, List
 DIRS = (-1, 0), (0, 1), (1, 0), (0, -1)
 
 
-def bfs(matrix: Tuple[Tuple[int]]) -> Tuple[int]:
+def bfs(matrix: Tuple) -> Tuple[int]:
     values: List[int] = []
     seen = {matrix[0][0]}
     queue = [(0, 0)]
@@ -25,4 +25,4 @@ def bfs(matrix: Tuple[Tuple[int]]) -> Tuple[int]:
 
 
 def in_bounds(row: int, col: int, matrix: Tuple[Tuple[int]]) -> bool:
-    return 0 <= row < len(matrix) and 0 <= col < len(matrix[0]);
+    return 0 <= row < len(matrix) and 0 <= col < len(matrix[0])
