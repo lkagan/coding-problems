@@ -16,32 +16,27 @@ const canFinish = function(numCourses, prerequisites) {
         adjList[prereq].push(course);
     }
 
-    const sorted = [];
+    // Create a stack of vertexes with indegree zero
+    const noPreReqs = [];
+    indegree.forEach((count, course) => count === 0 && noPreReqs.push(course));
 
-    while (hasZeroIndegrees(indegree)) {
-        for (const [course, count] of indegree.entries()) {
-            if (count === 0) {
-                sorted.push(course);
-                delete indegree[course];
+    let sortedCount = 0;
 
-                for (const dependant of adjList[course]) {
-                    indegree[dependant]--;
-                }
+    while (noPreReqs.length) {
+        const zeroIndegreeCourse = noPreReqs.pop();
+        const dependants = adjList[zeroIndegreeCourse];
+        sortedCount++;
+
+        // Decrement the number of indegrees for each dependant
+        for (const dependant of dependants) {
+            if (--indegree[dependant] === 0) {
+                noPreReqs.push(dependant);
             }
         }
     }
 
-    return sorted.length === numCourses;
+    return sortedCount === numCourses;
 }
 
-function hasZeroIndegrees(indegreeList) {
-    for (const indegrees of indegreeList) {
-        if (indegrees === 0) {
-            return true
-        }
-    }
-
-    return false;
-}
 
 module.exports = canFinish;
