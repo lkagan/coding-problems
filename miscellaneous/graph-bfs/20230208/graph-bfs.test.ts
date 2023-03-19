@@ -1,6 +1,4 @@
-'use strict';
-
-const graphBfs = require('./graph-bfs');
+import bfs from './graph-bfs-ts';
 
 const graph = [
     [1,3],
@@ -16,6 +14,6 @@ const graph = [
 
 const results = [0,1,3,4,5,2,6,8,7];
 
-it('should traverse the graph in breadth-first order', () => {
-    expect(graphBfs(graph)).toEqual(results);
-});
+test('Graph BFS', () => {
+    expect(bfs(graph)).toEqual(results);
+})
